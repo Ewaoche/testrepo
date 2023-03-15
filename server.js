@@ -14,6 +14,10 @@ app.use(express.json());
 
 app.use('/api/v1', routers.participantRoute);
 app.use('/api/v1/auth', routers.AuthRoute);
+app.use('/api/v1/policyNumber', routers.policyNumberRoutes);
+app.use('/api/v1/registerClaim', routers.registerClaimRoutes);
+app.use('/api/v1//dischargeVoucher', routers.dischargeVoucherRouter);
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000
