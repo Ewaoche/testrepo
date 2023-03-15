@@ -7,7 +7,7 @@ const connnectDb = async()=> {
         useNewUrlParser: true
     })
 
-   console.log(`Connected and working  database on ${conn.connection.host}` )
+   console.log(`Connected and working  database on ${PORT}` )
 }
 
 

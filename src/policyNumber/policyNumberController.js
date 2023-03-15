@@ -1,4 +1,4 @@
-const PolicyNumber = require('../models/policyNumber');
+const PolicyNumber = require('../../models/policyNumber');
 
 exports.getPolicyNumbers = async (req, res, next) => {
   try {
