@@ -1,39 +1,12 @@
-const participantControllers = require('../src/participant/participantController');
-const express = require('express');
-const router = express.Router();
+const participantControllers = require('../src/participant/participantController')
+const express = require('express')
+const participantRouter = express.Router()
 
+participantRouter
+  .route('/')
+  .post(participantControllers.createParticipant)
+  .get(participantControllers.getParticipants)
 
+participantRouter.get('/:participantID', participantControllers.getParticipant)
 
-router
-.post('/CreateParticipants', participantControllers.createParticipant);
-
-router
-.get('/getParticipants', participantControllers.getParticipants);
-
-
-router
-  .get('/getParticipant/:id', participantControllers.getParticipant)
-
-
-module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = participantRouter
