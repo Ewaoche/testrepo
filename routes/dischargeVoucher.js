@@ -10,7 +10,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 router.post('/', async (req, res) => {
   try {
     await client.connect();
-    const collection = client.db("your_database_name").collection("your_collection_name");
+    const collection = client.db("db").collection("collection");
     const result = await collection.insertOne({
       policyNumber: req.body.policyNumber,
       claimNumber: req.body.claimNumber,
