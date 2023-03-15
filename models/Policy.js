@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const { CLAIM_STATUS } = require('../utils/constants')
 
 const policySchema = Schema(
   {
@@ -38,8 +39,26 @@ const policySchema = Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 )
+
+// Virtual Populate Field
+
+// If populated returned all claims that are yet to be resolved under this policy
+policySchema.virtual('pending_claims', {
+  ref: 'Claim',
+  localField: '_id',
+  foreignField: 'policy',
+  match: {
+    status: [
+      CLAIM_STATUS.PENDING,
+      CLAIM_STATUS.UNDER_REVIEW,
+      CLAIM_STATUS.APPROVED,
+    ],
+  },
+})
 
 const Policy = model('Policy', policySchema)
 module.exports = Policy

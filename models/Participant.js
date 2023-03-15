@@ -19,8 +19,23 @@ const ParticipantSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 )
+
+// Virtual Populate Fields
+ParticipantSchema.virtual('claims', {
+  ref: 'Claim',
+  localField: '_id',
+  foreignField: 'participant',
+})
+
+// Hooks
+ParticipantSchema.pre('findOne', function (next) {
+  this.populate('claims', 'amount description status createdAt')
+  next()
+})
 
 const Participant = mongoose.model('Participant', ParticipantSchema)
 module.exports = Participant

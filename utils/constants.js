@@ -5,8 +5,9 @@ const ClaimStatus = Object.freeze({
   PENDING: 'pending',
   UNDER_REVIEW: 'under_review',
   DENIED: 'denied',
-  APPROVED: 'approved',
   CANCELED: 'canceled',
+  APPROVED: 'approved',
+  PAID: 'paid',
 })
 
 exports.CLAIM_STATUS = ClaimStatus
