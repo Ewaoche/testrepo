@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 const connnectDb = async()=> {
-    const conn = await mongoose.connect(process.env.MONGO, {
+    const conn = await mongoose.connect(process.env.LocalMONGO, {
         useNewUrlParser: true
     })
 
