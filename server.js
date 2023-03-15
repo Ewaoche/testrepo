@@ -5,6 +5,10 @@ const routers  =  require('./routes');
 const app = express();
 const errorHandler = require('./middleware/error');
 
+const DischargeVoucher = require('./models/dischargeVoucher');
+const PolicyNumber = require('./models/policyNumber');
+const RegisterClaim = require('./models/registerClaim');
+
 
 dotenv.config();
 DbConnect();
@@ -16,7 +20,9 @@ app.use('/api/v1', routers.participantRoute);
 app.use('/api/v1/auth', routers.AuthRoute);
 app.use('/api/v1/policyNumber', routers.policyNumberRoutes);
 app.use('/api/v1/registerClaim', routers.registerClaimRoutes);
-app.use('/api/v1//dischargeVoucher', routers.dischargeVoucherRouter);
+app.use('/api/v1/dischargeVoucher', routers.dischargeVoucherRouter);
+
+
 
 app.use(errorHandler);
 
