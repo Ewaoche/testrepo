@@ -8,7 +8,9 @@ const dischargeVoucherController = require('../src/dischargeVoucher/dischargeVou
 router.post('/', dischargeVoucherController.createDischargeVoucher);
 
 // GET request for fetching all discharge vouchers
-router.get('/', dischargeVoucherController.getAllDischargeVouchers);
+
+router.get('/', dischargeVoucherController.getDischargeVouchers);
+
 
 // GET request for fetching a specific discharge voucher by ID
 router.get('/:id', dischargeVoucherController.getDischargeVoucherById);
