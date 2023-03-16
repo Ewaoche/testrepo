@@ -1,5 +1,5 @@
-const DischargeVoucher = require('../models/dischargeVoucher');
-const ErrorResponse = require('../utils/errorResponse');
+const DischargeVoucher = require('../../models/dischargeVoucher');
+const ErrorResponse = require('../../utils/errorResponse');
 
 // @desc    Create new discharge voucher
 // @route   POST /api/discharge-vouchers
@@ -46,3 +46,15 @@ exports.getDischargeVouchers = async (req, res, next) => {
     next(err);
   }
 };
+
+
+exports.getDischargeVoucherById = async (req, res, next) => {
+  try {
+    const dischargeVouchers = await DischargeVoucher.find();
+
+    res.status(200).json({ success: true, data: dischargeVouchers });
+  } catch (err) {
+    next(err);
+  }
+};
+

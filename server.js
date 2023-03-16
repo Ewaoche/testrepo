@@ -26,7 +26,7 @@ app.use('/api/v1/dischargeVoucher', routers.dischargeVoucherRouter);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000
+const PORT =3000
 
 const server = app.listen(
     PORT,

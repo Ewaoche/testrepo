@@ -16,9 +16,9 @@ router.get('/', dischargeVoucherController.getDischargeVouchers);
 router.get('/:id', dischargeVoucherController.getDischargeVoucherById);
 
 // PUT request for updating a specific discharge voucher by ID
-router.put('/:id', dischargeVoucherController.updateDischargeVoucherById);
+// router.put('/:id', dischargeVoucherController.updateDischargeVoucherById);
 
 // DELETE request for deleting a specific discharge voucher by ID
-router.delete('/:id', dischargeVoucherController.deleteDischargeVoucherById);
+// router.delete('/:id', dischargeVoucherController.deleteDischargeVoucherById);
 
 module.exports = router;

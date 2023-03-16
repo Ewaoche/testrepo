@@ -1,4 +1,4 @@
-const RegisterClaim = require('../models/registerClaim');
+const RegisterClaim = require('../../models/registerClaim');
 
 const create = async (data) => {
   return RegisterClaim.create(data);
