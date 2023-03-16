@@ -81,7 +81,7 @@ class QueryHandler {
 
   /**
    * Process and return the results
-   * @returns {Document<any>[]} Array of fetched documents
+   * @returns {Promise<Document<any>[]>} Array of fetched documents
    */
   async process() {
     const query = this.filter()

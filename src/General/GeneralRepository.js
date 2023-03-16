@@ -1,17 +1,17 @@
-import { Model, Document } from 'mongoose'
-import { NotFound } from '../errors'
-import QueryHandler from './queryHandler'
+const { Model, Document } = require('mongoose')
+const { NotFound } = require('../errors')
+const QueryHandler = require('./queryHandler')
 
 /**
  * Handles CRUD operations for MongoDB
  */
-export class MongoDBCrudRepository {
+class MongoDBCrudRepository {
   /**
    *
    * @param {Model} Model
    */
   constructor(Model) {
-    this.#Model = Model
+    this.Model = Model
   }
 
   /**
@@ -21,7 +21,7 @@ export class MongoDBCrudRepository {
    * @returns array of documents
    */
   async getAll(query = {}) {
-    const Processor = new QueryHandler(this.#Model, query)
+    const Processor = new QueryHandler(this.Model, query)
     let results = await Processor.process()
     return results
   }
@@ -32,7 +32,7 @@ export class MongoDBCrudRepository {
    * @param {string[][]} populateOptions list of populate arguments
    */
   async getOne(id, populateOptions = []) {
-    let query = this.#Model.findById(id)
+    let query = this.Model.findById(id)
     if (populateOptions) {
       populateOptions.forEach((option) => {
         query = query.populate(...option)
@@ -40,7 +40,7 @@ export class MongoDBCrudRepository {
     }
     const doc = await query
     if (!doc)
-      throw new NotFound(`No ${this.#Model.modelName} with id: ${id} found!`)
+      throw new NotFound(`No ${this.Model.modelName} with id: ${id} found!`)
     return doc
   }
 
@@ -50,7 +50,7 @@ export class MongoDBCrudRepository {
    * @returns {Document} new Document created
    */
   async createOne(data) {
-    const newDoc = await this.#Model.create(data)
+    const newDoc = await this.Model.create(data)
     return newDoc
   }
 
@@ -66,13 +66,13 @@ export class MongoDBCrudRepository {
       if (req.body[field]) delete req.body[field]
     })
 
-    const doc = await this.#Model.findByIdAndUpdate(id, data, {
+    const doc = await this.Model.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
     })
 
     if (!doc)
-      throw new NotFound(`No ${this.#Model.modelName} with id: ${id} found!`)
+      throw new NotFound(`No ${this.Model.modelName} with id: ${id} found!`)
     return doc
   }
 
@@ -81,6 +81,10 @@ export class MongoDBCrudRepository {
    * @param {string | import('mongoose').ObjectId} id id of the document to delete
    */
   async deleteOne(id) {
-    await this.#Model.findByIdAndDelete(id)
+    await this.Model.findByIdAndDelete(id)
   }
+}
+
+module.exports = {
+  MongoDBCrudRepository,
 }
