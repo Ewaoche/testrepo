@@ -4,20 +4,29 @@ const Claim = require('../../models/Claim')
 const storage_type = process.env.DB_TYPE || 'mongodb'
 
 class ClaimMongoRepository {
-  mongoCrudRepo = new MongoDBCrudRepository(Claim)
+  #mongoCrudRepo = new MongoDBCrudRepository(Claim)
 
   async getOneClaim(id) {
-    return this.mongoCrudRepo.getOne(id, [
+    return this.#mongoCrudRepo.getOne(id, [
       ['participant', 'name title'],
       ['policy'],
     ])
   }
 
-  getAllClaims = this.mongoCrudRepo.getAll
-  updateClaim = async (id, data) =>
-    this.mongoCrudRepo.updateOne(id, data, ['status', 'participant'])
-  createClaim = this.mongoCrudRepo.createOne
-  deleteClaim = this.mongoCrudRepo.deleteOne
+  async getAllClaims(query) {
+    return this.#mongoCrudRepo.getAll(query)
+  }
+
+  async updateClaim(id, data) {
+    return this.#mongoCrudRepo.updateOne(id, data, ['status', 'participant'])
+  }
+
+  async createClaim(body) {
+    return this.#mongoCrudRepo.createOne(body)
+  }
+  async deleteClaim(id) {
+    return this.#mongoCrudRepo.deleteOne(id)
+  }
 }
 
 class ClaimRepository {
