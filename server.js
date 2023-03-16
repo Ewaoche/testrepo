@@ -5,8 +5,15 @@ const routers = require('./routes')
 const app = express()
 const errorHandler = require('./middleware/error')
 
+<<<<<<< HEAD
+const DischargeVoucher = require('./models/dischargeVoucher');
+const PolicyNumber = require('./models/policyNumber');
+const RegisterClaim = require('./models/registerClaim');
+
+=======
 dotenv.config()
 DbConnect()
+>>>>>>> origin/genesis
 
 app.use(express.json())
 
@@ -18,9 +25,21 @@ app.get('/', (req, res) => {
 // Register App Routers
 require('./routes')(app)
 
-app.use(errorHandler)
+<<<<<<< HEAD
+app.use('/api/v1', routers.participantRoute);
+app.use('/api/v1/auth', routers.AuthRoute);
+app.use('/api/v1/policyNumber', routers.policyNumberRoutes);
+app.use('/api/v1/registerClaim', routers.registerClaimRoutes);
+app.use('/api/v1/dischargeVoucher', routers.dischargeVoucherRouter);
 
-const PORT = process.env.PORT || 3000
+
+
+app.use(errorHandler);
+=======
+app.use(errorHandler)
+>>>>>>> origin/genesis
+
+const PORT =3000
 
 const server = app.listen(
   PORT,

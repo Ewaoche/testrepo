@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+module.exports = {
+    participantRoute: require('./participant'),
+    AuthRoute: require('./auth'),
+    dischargeVoucherRouter: require('./dischargeVoucher'),
+    policyNumberRoutes: require('./policyNumber'),
+    registerClaimRoutes: require('./registerClaim')
+
+}
+
+=======
 const authRouter = require('./auth')
 const claimRouter = require('./claim')
 const participantRouter = require('./participant')
@@ -13,3 +24,4 @@ module.exports = (app) => {
   app.use('/api/v1/policies', policyRouter)
   app.use('/api/v1/claims', claimRouter)
 }
+>>>>>>> origin/genesis
